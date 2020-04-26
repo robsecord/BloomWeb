@@ -3,9 +3,9 @@
 echo "Bumping version number.."
 version update -p
 
-# echo "Rebuilding.."
-# rm -rf public/
-# yarn build
+echo "Rebuilding.."
+rm -rf public/
+yarn build
 
 echo "Pushing to Github"
 git add .
