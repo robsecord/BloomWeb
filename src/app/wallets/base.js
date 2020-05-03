@@ -1,11 +1,15 @@
 // Frameworks
 import * as _ from 'lodash';
 
+// App Components
+import { Helpers } from '../utils/helpers';
+
 class IWalletBase {
-    constructor(type, site, store) {
+    constructor(type, siteTitle, siteLogoUrl, dispatch) {
         this.type = type;
-        this.site = site;
-        this.store = store;
+        this.siteTitle = siteTitle;
+        this.siteLogoUrl = siteLogoUrl;
+        this.dispatchState = dispatch;
 
         this.web3 = null;
         this.provider = null;
@@ -15,46 +19,71 @@ class IWalletBase {
         return true;
     }
 
-    async init() {
+    async prepare() {
         // Get Default Account if already Connected
-        this.changeUserAccount(this.web3.eth.accounts);
+        await this.changeUserAccount();
         this._hookCommonEvents();
     }
 
     async connect() {
-        // const accounts = await this.provider.enable(); // send("eth_requestAccounts");
-        // this.web3.eth.getCoinbase((error, address) => { ... });
-        const accounts = await this.web3.currentProvider.enable(); // send("eth_requestAccounts");
-        this.changeUserAccount(accounts);
+        return await this.changeUserAccount();
     }
 
     async disconnect() {
-        // Clear Account
-        this.store.type = '';
-        this.store.defaultAddress = '';
+        this.dispatchState({type: 'LOGOUT'});
     }
 
-    changeUserAccount(accounts = []) {
-        if (_.isEmpty(accounts)) { return; }
-        this.store.type = this.type;
-        this.store.defaultAddress = _.get(accounts, '0', '');
-        // console.log(`User's address changed to "${this.store.defaultAddress}".`);
+    async changeUserAccount(accounts) {
+        const payload = {
+            allReady    : false,
+            networkId   : 0,
+            type        : '',
+            name        : '',
+            address     : '',
+            balance     : 0,
+        };
+        this.dispatchState({type: 'CONNECTED_ACCOUNT', payload});
+
+        if (_.isEmpty(accounts)) {
+            accounts = await this.web3.eth.getAccounts();
+        }
+        if (_.isEmpty(accounts)) {
+            console.error('Failed to connect to accounts for wallet!');
+            return;
+        }
+
+        const { correctNetwork } = Helpers.getCorrectNetwork();
+        const address = _.first(accounts) || '';
+
+        // console.log('>>>>>  this.web3.eth', await this.web3.eth);
+        // console.log('>>>>>  this.provider', this.provider);
+        // console.log('>>>>>  getChainId', await this.web3.eth.getChainId());
+        // console.log('>>>>>  accounts', accounts);
+        // console.log('>>>>>  address', address);
+        // console.log('>>>>>  coinbase', await this.web3.eth.getCoinbase());
+
+        payload.networkId = await this.web3.eth.getChainId(); // this.provider.networkVersion;
+        payload.type = this.type;
+        payload.address = address;
+        payload.name = _.join([..._.slice(address, 0, 6), '...', ..._.slice(address, -4)], '');
+        payload.balance = await this.web3.eth.getBalance(address);
+        payload.allReady = correctNetwork === payload.networkId;
+
+        this.dispatchState({type: 'CONNECTED_ACCOUNT', payload});
+        return payload;
     }
 
     getChainName(chainId) {
-        if (chainId === '1') { return 'mainnet'; }
-        if (chainId === '3') { return 'ropsten'; }
-        if (chainId === '42') { return 'kovan'; }
-        return 'localhost';
+        return Helpers.getNetworkName(chainId);
     }
 
     _hookCommonEvents() {
-        const _changeAccount = (accts) => this.changeUserAccount(accts);
-        if (_.isFunction(_.get(this.provider, 'on'))) {
+        const _changeAccount = async () => {
+            await this.changeUserAccount();
+        };
+        if (_.isFunction(this.provider.on)) {
             this.provider.on('accountsChanged', _changeAccount);
-        }
-        else if (_.isFunction(_.get(this.web3, 'currentProvider.on'))) {
-            this.web3.currentProvider.on('accountsChanged', _changeAccount);
+            this.provider.on('networkChanged', _changeAccount);
         }
     }
 }

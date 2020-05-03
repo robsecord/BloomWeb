@@ -5,8 +5,8 @@ import IWalletBase from './base';
 import { GLOBALS } from '../utils/globals';
 
 class MetamaskWallet extends IWalletBase {
-    constructor(site, store) {
-        super(GLOBALS.WALLET_TYPE_METAMASK, site, store);
+    constructor(siteTitle, siteLogo, dispatch) {
+        super(GLOBALS.WALLET_TYPE_METAMASK, siteTitle, siteLogo, dispatch);
     }
 
     static isEnabled() {
@@ -15,7 +15,7 @@ class MetamaskWallet extends IWalletBase {
         return (isModern || isLegacy) && window.web3.currentProvider.isMetaMask;
     }
 
-    async init({rpcUrl, chainId}) {
+    async prepare({rpcUrl, chainId}) {
         // Detect Injected Web3
         if (!MetamaskWallet.isEnabled()) {
             throw new Error('Error: MetaMask is not installed on this browser!');
@@ -27,8 +27,13 @@ class MetamaskWallet extends IWalletBase {
         // Initialize a Web3 object
         this.web3 = new Web3(this.provider);
 
-        // Initialize Base
-        await super.init();
+        // Prepare Base
+        await super.prepare();
+    }
+
+    async connect() {
+        await this.web3.currentProvider.enable(); // send("eth_requestAccounts");
+        return await super.connect();
     }
 }
 

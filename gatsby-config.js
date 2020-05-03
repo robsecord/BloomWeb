@@ -38,6 +38,42 @@ module.exports = {
             },
         },
         `gatsby-plugin-lodash`,
+        {
+            resolve: `gatsby-plugin-prefetch-google-fonts`,
+            options: {
+                fonts: [
+                    {
+                        family: `Roboto`,
+                        variants: [`300`, `400`, `500`]
+                    },
+                    {
+                        family: `Montserrat`,
+                        variants: [`400`, `700`]
+                    },
+                    {
+                        family: `Open Sans`,
+                        variants: [`400`, `700`]
+                    },
+                ],
+            },
+        },
+        {
+            resolve: `gatsby-plugin-material-ui`,
+            options: {
+                stylesProvider: {
+                    injectFirst: true,
+                },
+            },
+        },
+        `gatsby-plugin-styled-components`,
+        {
+            resolve: 'gatsby-plugin-react-svg',
+            options: {
+                rule: {
+                    include: /svg|vendor/
+                }
+            }
+        },
         `gatsby-plugin-netlify`,
 
         // this (optional) plugin enables Progressive Web App + Offline functionality

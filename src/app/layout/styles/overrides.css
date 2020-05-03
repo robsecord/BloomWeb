@@ -1,0 +1,14 @@
+
+body {
+    /*color: #333;*/
+    /*background: #f8f8f8;*/
+}
+
+ul {
+    margin: 0.75rem 0;
+    padding-left: 1rem;
+}
+ul li {
+    margin: 0.5rem 0;
+    list-style: none;
+}

@@ -6,13 +6,13 @@ import IWalletBase from './base';
 import { GLOBALS } from '../utils/globals';
 
 class SquareLinkWallet extends IWalletBase {
-    constructor(site, store) {
-        super(GLOBALS.WALLET_TYPE_SQUARELINK, site, store);
+    constructor(siteTitle, siteLogo, dispatch) {
+        super(GLOBALS.WALLET_TYPE_SQUARELINK, siteTitle, siteLogo, dispatch);
     }
 
-    async init({rpcUrl, chainId, options}) {
+    async prepare({rpcUrl, chainId, options}) {
         // Initialize SquareLink
-        this.sqlk = new Squarelink(process.env.GATSBY_SQUARELINK_DAPP_ID);
+        this.sqlk = new Squarelink(options.uniqueId);
 
         // Initialize a Web3 Provider object
         this.provider = await this._getProvider();
@@ -22,8 +22,7 @@ class SquareLinkWallet extends IWalletBase {
     }
 
     async connect() {
-        const accounts = await this.web3.eth.getAccounts();
-        this.changeUserAccount(accounts);
+        return await this.connect();
     }
 
     _getProvider() {
