@@ -73,7 +73,6 @@ class Wallet {
     }
 
     async reconnectFromCache(cachedWallet) {
-        console.log('reconnectFromCache', cachedWallet);
         if (!_.isEmpty(cachedWallet)) {
             await this.prepare(cachedWallet);
             await this.connect();

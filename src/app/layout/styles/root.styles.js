@@ -54,4 +54,34 @@ export default makeStyles(theme => ({
     drawer: {},
     drawerPaper: {},
 
+    // Common Loading Spinner
+    loadingContainer: {
+        margin: '2rem 0',
+    },
+    loadingPaper: {
+        padding: '1rem 1.5rem',
+
+        '& span': {
+            marginLeft: '1.4rem',
+            fontSize: '1.15rem',
+            lineHeight: '2rem',
+            verticalAlign: 'super',
+            fontFamily: 'Roboto, Courier, monospace',
+        }
+    },
+
+    // Common Modals
+    simpleModal: {
+        position: 'absolute',
+        top: `50%`,
+        left: `50%`,
+        transform: `translate(-50%, -50%)`,
+        width: theme.spacing(60),
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[5],
+        borderRadius: '5px',
+        padding: theme.spacing(4),
+        outline: 'none',
+    },
+
 }));
