@@ -1,12 +1,13 @@
 // Frameworks
 import Web3 from 'web3';
+import window from 'global';
 
 import IWalletBase from './base';
 import { GLOBALS } from '../utils/globals';
 
 class MetamaskWallet extends IWalletBase {
-    constructor(siteTitle, siteLogo, dispatch) {
-        super(GLOBALS.WALLET_TYPE_METAMASK, siteTitle, siteLogo, dispatch);
+    constructor(wallet, walletDispatch, updateCache) {
+        super(GLOBALS.WALLET_TYPE_METAMASK, wallet, walletDispatch, updateCache);
     }
 
     static isEnabled() {

@@ -10,6 +10,9 @@ const LOCAL_STORAGE_KEY = `${GLOBALS.CODENAME_ABBR}_LS`;
 
 const initialState = {
     'VERSION': GLOBALS.CODE_VERSION,
+
+    cachedWallet: '',
+    streamTxHash: '',
 };
 export const LocalStorageContext = createContext(initialState);
 

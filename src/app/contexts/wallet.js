@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 // App Components
 import Wallet from '../wallets';
+import { useLocalStorageContext } from './local-storage';
 
 const initialState = {
     networkId           : 0,
@@ -53,8 +54,12 @@ export default function Provider({children}) {
 }
 
 export function Updater() {
-    const wallet = useMemo(() => Wallet.instance(), [Wallet]);
+    const wallet = useMemo(() => Wallet.instance(), []);
     const [, walletDispatch ] = useWalletContext();
+
+    const [ cacheState, cacheDispatch ] = useLocalStorageContext();
+    const cachedWallet = cacheState.cachedWallet;
+    const updateCache = cacheDispatch.updateKey;
 
     const data = useStaticQuery(graphql`
         query SiteDataWalletQuery {
@@ -72,8 +77,8 @@ export function Updater() {
 
     // Prepare Wallet Interface
     useEffect(() => {
-        wallet.init({walletDispatch, siteTitle, siteLogoUrl});
-    }, [wallet, walletDispatch]);
+        wallet.init({walletDispatch, updateCache, cachedWallet, siteTitle, siteLogoUrl});
+    }, [wallet]);
 
 
     return null;

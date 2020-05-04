@@ -6,8 +6,8 @@ import IWalletBase from './base';
 import { GLOBALS } from '../utils/globals';
 
 class AuthereumWallet extends IWalletBase {
-    constructor(siteTitle, siteLogo, dispatch) {
-        super(GLOBALS.WALLET_TYPE_AUTHEREUM, siteTitle, siteLogo, dispatch);
+    constructor(wallet, walletDispatch, updateCache) {
+        super(GLOBALS.WALLET_TYPE_AUTHEREUM, wallet, walletDispatch, updateCache);
     }
 
     async prepare({rpcUrl, chainId}) {

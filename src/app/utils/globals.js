@@ -1,12 +1,9 @@
-// Frameworks
-import * as _ from 'lodash';
-
 export const GLOBALS = {};
 
 GLOBALS.CODENAME            = 'Bloom';
 GLOBALS.CODENAME_ABBR       = 'BLM';
 GLOBALS.CODE_VERSION        = 'v0.0.12';
-GLOBALS.BASE_URL            = 'https://bloom-finance.netlify.com';
+GLOBALS.BASE_URL            = 'https://bloom-finance.eth.link';
 GLOBALS.APP_ROOT            = '/app';
 
 GLOBALS.BRANDING = {
@@ -50,13 +47,9 @@ GLOBALS.MOBILE_MENU_WIDTH       = 250;
 GLOBALS.BOOLEAN_TRUE_HEX  = '0x0000000000000000000000000000000000000000000000000000000000000001';
 GLOBALS.BOOLEAN_FALSE_HEX = '0x0000000000000000000000000000000000000000000000000000000000000000';
 
-GLOBALS.WALLET_TYPE_COINBASE        = 'walletLink';
 GLOBALS.WALLET_TYPE_WALLETCONNECT   = 'walletconnect';
 GLOBALS.WALLET_TYPE_FORTMATIC       = 'fortmatic';
-GLOBALS.WALLET_TYPE_TORUS           = 'torus';
 GLOBALS.WALLET_TYPE_PORTIS          = 'portis';
 GLOBALS.WALLET_TYPE_AUTHEREUM       = 'authereum';
-GLOBALS.WALLET_TYPE_SQUARELINK      = 'squarelink';
-GLOBALS.WALLET_TYPE_ARKANE          = 'arkane';
 GLOBALS.WALLET_TYPE_METAMASK        = 'metamask';
 GLOBALS.WALLET_TYPE_NATIVE          = 'native';

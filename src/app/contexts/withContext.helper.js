@@ -22,3 +22,5 @@ const withContext = CustomContext => CustomTarget => {
 
     return WithContext;
 };
+
+export default withContext;

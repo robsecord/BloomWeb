@@ -13,26 +13,20 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cc2fea21-5b34-4285-b7b6-6e626f0d5eff/deploy-status)](https://app.netlify.com/sites/bloom-finance/deploys)
 
-#### **Demo:**
-https://bloom-finance.netlify.com/
+#### **Website:**
+https://bloom-finance.eth.link/
 
 
 #### **Account Management Integrations:**
 
+- Hosted Wallets
+    - Portis
+    - Fortmatic
+    - Authereum
+    
 - QR-Connected Wallets
-    - Coinbase WalletLink
     - Wallet Connect
 
-- Hosted Wallets
-    - Fortmatic
-    - Torus
-    - Portis
-    - Uport
-    - Authereum
-    - Bitski
-    - SquareLink
-    - Arkane Network
-    
 - Browser Wallets
     - MetaMask
     - Native (Brave, Opera, Toshi, Cipher, Status, etc..) -- **Partially Done**
@@ -41,22 +35,11 @@ https://bloom-finance.netlify.com/
     - ~~Ledger~~ -- _todo_
     - ~~Trezor~~ -- _todo_
 
+#### **Blockchain Event Explorer:**
+- The Graph
+
 #### **Blockchain Event Streaming & Notifications:**
-- ~~dfuse.io~~ -- _todo_
-
-#### **Ethereum Design Components:**
-- Rimble UI
-
-#### **Gatsby Plugins:**
-- gatsby-plugin-react-helmet
-- gatsby-plugin-create-client-paths
-- gatsby-source-filesystem
-- gatsby-transformer-sharp
-- gatsby-plugin-sharp
-- gatsby-plugin-manifest
-- gatsby-plugin-lodash
-- gatsby-plugin-netlify
-- gatsby-plugin-offline      
+- dfuse.io
 
 #### **Build Environment:**
 - node: 12.16.1
@@ -69,15 +52,15 @@ To start, create the following files in the root directory of the project:
 
 **_.env.development_**
 
-    GATSBY_ETH_JSONRPC_URL=https://ropsten.infura.io/v3/__YOUR_INFURA_API_KEY_HERE__
-    GATSBY_ETH_CHAIN_ID=3
-    
-    GATSBY_FORTMATIC_APIKEY=__YOUR_FORTMATIC_API_KEY_HERE__
-    GATSBY_PORTIS_DAPP_ID=__YOUR_PORTIS_DAPP_ID_HERE__
-    GATSBY_UPORT_DAPP_NAME=__YOUR_UPORT_DAPP_NAME_HERE__
-    GATSBY_BITSKI_CLIENT_ID=__YOUR_BITSKI_CLIENT_ID_HERE__
-    GATSBY_SQUARELINK_DAPP_ID=__YOUR_SQUARELINK_DAPP_ID_HERE__
-    GATSBY_ARKANE_CLIENT_ID=__YOUR_ARKANE_CLIENT_ID_HERE__
+    GATSBY_ETH_INFURA_ID="__YOUR_INFURA_API_KEY_HERE__"
+    GATSBY_ETH_JSONRPC_URL="https://ropsten.infura.io/v3/__YOUR_INFURA_API_KEY_HERE__"
+    GATSBY_ETH_CHAIN_ID="3"
+    GATSBY_DFUSE_API_KEY="__YOUR_DFUSE_API_KEY_HERE__"
+
+    GATSBY_FORTMATIC_APIKEY="__YOUR_FORTMATIC_API_KEY_HERE__"
+    GATSBY_PORTIS_DAPP_ID="__YOUR_PORTIS_DAPP_ID_HERE__"
+    GATSBY_SQUARELINK_DAPP_ID="__YOUR_SQUARELINK_DAPP_ID_HERE__"
+    GATSBY_ARKANE_CLIENT_ID="__YOUR_ARKANE_CLIENT_ID_HERE__"
 
 Next, run the following commands from a terminal:
 

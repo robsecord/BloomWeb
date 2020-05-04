@@ -6,7 +6,7 @@ module.exports = {
 
     manifestName: 'Bloom',
     manifestShortName: 'Bloom', // max 12 characters
-    manifestStartUrl: 'https://bloom-finance.eth.link/',
+    manifestStartUrl: 'https://bloom-finance.eth.link',
     manifestBackgroundColor: '#663399',
     manifestThemeColor: '#663399',
     manifestDisplay: 'standalone',

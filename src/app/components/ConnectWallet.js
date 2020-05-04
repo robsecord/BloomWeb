@@ -27,7 +27,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Wallet from '../wallets';
 import { WalletProviders } from '../wallets/providers';
 import TabPanel from './TabPanel';
-import Loading from '../components/Loading';
+import Loading from './Loading';
 
 // Data Context for State
 import { useRootContext } from '../contexts/root';
@@ -107,8 +107,6 @@ const useCustomStyles = makeStyles(theme => ({
 
 
 function LogoWrapper({ walletKey, onConnecting, onConnected }) {
-    if (_.isUndefined(WalletProviders[walletKey])) { return ''; }
-
     const wallet = Wallet.instance();
     const customClasses = useCustomStyles();
     const { name, className, logo, isDisabled } = WalletProviders[walletKey];
@@ -127,6 +125,7 @@ function LogoWrapper({ walletKey, onConnecting, onConnected }) {
         }
     };
 
+    if (_.isUndefined(WalletProviders[walletKey])) { return ''; }
     return (
         <Button
             variant="outlined"

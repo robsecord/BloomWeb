@@ -12,9 +12,10 @@ import { WalletProviders } from '../wallets/providers';
 
 class Wallet {
     constructor() {
-        this.siteTitle = '';
-        this.siteLogoUrl = '';
-        this.dispatchState = null;
+        this._siteTitle = '';
+        this._siteLogoUrl = '';
+        this._walletDispatch = null;
+        this._updateCache = null;
     }
 
     static instance() {
@@ -24,20 +25,39 @@ class Wallet {
         return Wallet.__instance;
     }
 
-    init({walletDispatch, siteTitle, siteLogoUrl}) {
-        this.siteTitle = siteTitle;
-        this.siteLogoUrl = siteLogoUrl;
-        this.dispatchState = walletDispatch;
+    init({walletDispatch, updateCache, cachedWallet, siteTitle, siteLogoUrl}) {
+        this._siteTitle = siteTitle;
+        this._siteLogoUrl = siteLogoUrl;
+        this._walletDispatch = walletDispatch;
+        this._updateCache = updateCache;
+
+        this.reconnectFromCache(cachedWallet);
     }
 
     static isEnabled(type) {
         return (WalletProviders[type].wallet).isEnabled();
     }
 
+    get siteTitle() {
+        return this._siteTitle;
+    }
+
+    set siteTitle(title) {
+        this._siteTitle = title;
+    }
+
+    get siteLogoUrl() {
+        return this._siteLogoUrl;
+    }
+
+    set siteLogoUrl(url) {
+        this._siteLogoUrl = url;
+    }
+
     async prepare(type = GLOBALS.WALLET_TYPE_METAMASK) {
         const walletData = WalletProviders[type];
         const walletClass = walletData.wallet;
-        this.wallet = new walletClass(this.siteTitle, this.siteLogoUrl, this.dispatchState);
+        this.wallet = new walletClass(this, this._walletDispatch, this._updateCache);
         await this.wallet.prepare({options: walletData.options, ...Wallet._getEnv()});
         this.ens = new ENS(this.getProvider());
     }
@@ -50,6 +70,14 @@ class Wallet {
     async disconnect() {
         if (!this.wallet) { return; }
         await this.wallet.disconnect();
+    }
+
+    async reconnectFromCache(cachedWallet) {
+        console.log('reconnectFromCache', cachedWallet);
+        if (!_.isEmpty(cachedWallet)) {
+            await this.prepare(cachedWallet);
+            await this.connect();
+        }
     }
 
     static getName(type) {
@@ -65,6 +93,14 @@ class Wallet {
         if (!this.wallet) { return; }
         return this.wallet.provider;
     }
+
+    // walletDispatch(options) {
+    //     this._walletDispatch(options);
+    // }
+
+    // cacheDispatch(options) {
+    //     this._cacheDispatch(options);
+    // }
 
     async getEnsName(address) {
         if (!this.ens) { return 'ENS Unavailable'; }

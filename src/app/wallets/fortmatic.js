@@ -6,8 +6,8 @@ import IWalletBase from './base';
 import { GLOBALS } from '../utils/globals';
 
 class FortmaticWallet extends IWalletBase {
-    constructor(siteTitle, siteLogo, dispatch) {
-        super(GLOBALS.WALLET_TYPE_FORTMATIC, siteTitle, siteLogo, dispatch);
+    constructor(wallet, walletDispatch, updateCache) {
+        super(GLOBALS.WALLET_TYPE_FORTMATIC, wallet, walletDispatch, updateCache);
     }
 
     async prepare({rpcUrl, chainId, options}) {

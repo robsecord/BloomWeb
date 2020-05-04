@@ -5,12 +5,11 @@ import * as _ from 'lodash';
 import { Helpers } from '../utils/helpers';
 
 class IWalletBase {
-    constructor(type, siteTitle, siteLogoUrl, dispatch) {
+    constructor(type, wallet, walletDispatch, updateCache) {
         this.type = type;
-        this.siteTitle = siteTitle;
-        this.siteLogoUrl = siteLogoUrl;
-        this.dispatchState = dispatch;
-
+        this.wallet = wallet;
+        this.walletDispatch = walletDispatch;
+        this.updateCache = updateCache;
         this.web3 = null;
         this.provider = null;
     }
@@ -30,7 +29,8 @@ class IWalletBase {
     }
 
     async disconnect() {
-        this.dispatchState({type: 'LOGOUT'});
+        this.updateCache('cachedWallet', '');
+        this.walletDispatch({type: 'LOGOUT'});
     }
 
     async changeUserAccount(accounts) {
@@ -42,7 +42,7 @@ class IWalletBase {
             address     : '',
             balance     : 0,
         };
-        this.dispatchState({type: 'CONNECTED_ACCOUNT', payload});
+        this.walletDispatch({type: 'CONNECTED_ACCOUNT', payload});
 
         if (_.isEmpty(accounts)) {
             accounts = await this.web3.eth.getAccounts();
@@ -69,7 +69,8 @@ class IWalletBase {
         payload.balance = await this.web3.eth.getBalance(address);
         payload.allReady = correctNetwork === payload.networkId;
 
-        this.dispatchState({type: 'CONNECTED_ACCOUNT', payload});
+        this.updateCache('cachedWallet', this.type);
+        this.walletDispatch({type: 'CONNECTED_ACCOUNT', payload});
         return payload;
     }
 

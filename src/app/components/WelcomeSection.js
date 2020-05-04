@@ -23,7 +23,7 @@ const useCustomStyles = makeStyles((theme) => ({
 }));
 
 // Welcome Section
-const WelcomeSection = ({ location }) => {
+const WelcomeSection = () => {
     const classes = useRootStyles();
     const customClasses = useCustomStyles();
 

@@ -8,8 +8,8 @@ import IWalletBase from './base';
 import { GLOBALS } from '../utils/globals';
 
 class WalletConnectWallet extends IWalletBase {
-    constructor(siteTitle, siteLogo, dispatch) {
-        super(GLOBALS.WALLET_TYPE_WALLETCONNECT, siteTitle, siteLogo, dispatch);
+    constructor(wallet, walletDispatch, updateCache) {
+        super(GLOBALS.WALLET_TYPE_WALLETCONNECT, wallet, walletDispatch, updateCache);
     }
 
     async prepare({rpcUrl, chainId}) {
@@ -33,7 +33,6 @@ class WalletConnectWallet extends IWalletBase {
 
         // await this.connect();
         this.hookCustomEvents();
-        this._hookCommonEvents();
     }
 
     async connect() {
@@ -62,6 +61,7 @@ class WalletConnectWallet extends IWalletBase {
     }
 
     hookCustomEvents() {
+        this._hookCommonEvents();
         // this.walletConnector.on('connect', async (error, payload) => {
         //     if (error) { throw error; }
         //     console.log('walletConnector connect');

@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 // App Components
 import {
     Bloom,
-} from '../blockchain/contracts';
+} from './contracts';
 import { Helpers } from '../utils/helpers';
 import { GLOBALS } from '../utils/globals';
 
@@ -120,7 +120,7 @@ class Transactions {
 
     async streamTransaction({transactionHash}) {
         if (!this.txDispatch || !this.cacheDispatch) { return; }
-        this.cacheDispatch('streamTxHash', transactionHash);
+        this.cacheDispatch({type: 'UPDATE_KEY', payload: {key: 'streamTxHash', value: transactionHash}});
         this.txDispatch({type: 'BEGIN_STREAMING', payload: {transactionHash}});
 
         let currentTransitions = [];
@@ -161,7 +161,7 @@ class Transactions {
 
             if (message.type === 'complete' || forceEnd) {
                 this.cachedTxHash = null;
-                this.cacheDispatch('streamTxHash', '');
+                this.cacheDispatch({type: 'UPDATE_KEY', payload: {key: 'streamTxHash', value: ''}});
                 this.txDispatch({type: 'STREAM_COMPLETE'});
                 this.stream.close();
             }
