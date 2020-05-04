@@ -4,8 +4,7 @@ import * as _ from 'lodash';
 
 // App Components
 import {
-    ChargedParticles,
-    ChargedParticlesEscrow
+    Bloom,
 } from '../blockchain/contracts';
 import { Helpers } from '../utils/helpers';
 import { GLOBALS } from '../utils/globals';
@@ -17,45 +16,9 @@ import { searchTransactionEvent } from './queries/SearchTransactionEvent';
 // Transaction Events
 const transactionEventMap = {
     'UPDATE_PARTICLE_TYPE': {   // find latest in logs for full record
-        contract    : ChargedParticles,
-        eventName   : 'ParticleTypeUpdated',
-        method      : 'ParticleTypeUpdated(uint256,string,bool,bool,string,uint256,string)',
-    },
-
-    'UPDATE_PLASMA_TYPE': {   // find latest in logs for full record
-        contract    : ChargedParticles,
-        eventName   : 'PlasmaTypeUpdated',
-        method      : 'PlasmaTypeUpdated(uint256,string,bool,uint256,string)',
-    },
-
-    'MINT_PARTICLE': {
-        contract    : ChargedParticles,
-        eventName   : 'ParticleMinted',
-        method      : '',
-    },
-
-    'BURN_PARTICLE': {
-        contract    : ChargedParticles,
-        eventName   : 'ParticleBurned',
-        method      : '',
-    },
-
-    'ENERGIZE_PARTICLE': {
-        contract    : ChargedParticlesEscrow,
-        eventName   : 'EnergizedParticle',
-        method      : '',
-    },
-
-    'DISCHARGE_PARTICLE': {
-        contract    : ChargedParticlesEscrow,
-        eventName   : 'DischargedParticle',
-        method      : '',
-    },
-
-    'RELEASE_PARTICLE': {
-        contract    : ChargedParticlesEscrow,
-        eventName   : 'ReleasedParticle',
-        method      : '',
+        contract    : Bloom,
+        eventName   : 'CreateCoupon',
+        method      : 'CreateCoupon()',
     },
 };
 

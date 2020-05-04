@@ -24,7 +24,6 @@ const Welcome = () => {
     return (
         <PlantSection>
             <SEO title={'Create Coupons!'} />
-
             {
                 (allReady && isNetworkConnected)
                     ? (

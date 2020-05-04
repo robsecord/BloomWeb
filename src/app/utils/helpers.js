@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 
 // App Components
 import Wallet from '../wallets';
-import ChargedParticlesData from '../blockchain/contracts/ChargedParticles';
+import BloomData from '../blockchain/contracts/Bloom';
 import { GLOBALS } from './globals';
 
 export const Helpers = {};
@@ -94,7 +94,7 @@ Helpers.keccakStr = (str) => {
 Helpers.decodeLog = ({eventName, logEntry}) => {
     const web3 = Wallet.instance().getWeb3();
     if (!web3) { return null; }
-    const eventData = _.find(ChargedParticlesData.abi, {type: 'event', name: eventName});
+    const eventData = _.find(BloomData.abi, {type: 'event', name: eventName});
     const eventAbi = _.get(eventData, 'inputs', []);
     if (_.isEmpty(eventAbi)) { return false; }
     return web3.eth.abi.decodeLog(eventAbi, logEntry.data, logEntry.topics.slice(1));

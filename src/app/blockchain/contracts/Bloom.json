@@ -1,0 +1,23 @@
+{
+  "fileName": "Bloom.sol",
+  "contractName": "Bloom",
+  "abi": [
+  ],
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "petersburg"
+  },
+  "networks": {
+    "3": {
+      "links": {},
+      "events": {},
+      "address": "0x3bC32efB8a544E1859Fd71AB1E8448131c7E2a6d",
+      "updated_at": 1588452100965
+    }
+  }
+}

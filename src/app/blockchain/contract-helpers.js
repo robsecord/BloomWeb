@@ -9,7 +9,7 @@ import IPFS from '../utils/ipfs';
 // Contract Data
 import {
     getContractByName,
-    ChargedParticles
+    Bloom
 } from '../blockchain/contracts';
 
 
@@ -131,133 +131,6 @@ ContractHelpers.saveMetadata = ({ particleData, txDispatch }) => {
             reject(err);
         }
     });
-};
-
-
-ContractHelpers.createParticle = ({from, particleData, txDispatch, payWithIons = false}) => {
-    return new Promise(async (resolve) => {
-        const handleError = _contractErrorHandler('createParticle', txDispatch);
-        let transactionHash = '';
-
-        try {
-            txDispatch({type: 'BEGIN_TX'});
-
-            let ethPrice = 0;
-            if (!payWithIons) {
-                ethPrice = GLOBALS.CREATE_PARTICLE_PRICE.ETH.NFT;
-            }
-
-            // Is Series or Collection?
-            particleData.isSeries = particleData.classification === 'series';
-            particleData.accessType = (particleData.isPrivate ? 2 : 1) | (particleData.isSeries ? 4 : 8);
-
-            const {jsonFileUrl} = await ContractHelpers.saveMetadata({particleData, txDispatch});
-
-            // Update Transition State
-            txDispatch({
-                type: 'STREAM_TRANSITION', payload: {
-                    streamTransitions: [{to: 'CREATE', transition: 'TX_PROMPT'}]
-                }
-            });
-
-            // Create Particle on Blockchain
-            const chargedParticles = ChargedParticles.instance();
-            const tx = {from, value: ethPrice};
-            const args = [
-                from,                       // address _creator,
-                jsonFileUrl,                // string memory _uri,
-                particleData.symbol,        // string memory _symbol,
-                particleData.accessType,    // uint8 _accessType,
-                particleData.assetPair,     // string _assetPairId,
-                particleData.supply,        // uint256 _maxSupply,
-                particleData.mintFee,       // uint256 _mintFee,
-                particleData.energizeFee,   // uint256 _energizeFee,
-                payWithIons,                // bool _payWithIons
-            ];
-
-            // console.log('tx', tx);
-            // console.log('args', args);
-
-            // Submit Transaction and wait for Receipt
-            chargedParticles.sendContractTx('createParticle', tx, args, (err, txHash) => {
-                transactionHash = txHash;
-                if (err) {
-                    handleError(err, transactionHash);
-                    return resolve({transactionHash});
-                }
-                txDispatch({type: 'SUBMIT_TX', payload: {transactionHash}});
-                resolve({tx, args, transactionHash});
-            });
-        }
-        catch (err) {
-            handleError(err, transactionHash);
-            resolve({transactionHash});
-        }
-    });
-};
-
-ContractHelpers.createPlasma = ({from, particleData, txDispatch, payWithIons = false}) => {
-    return new Promise(async (resolve) => {
-        const handleError = _contractErrorHandler('createPlasma', txDispatch);
-        let transactionHash = '';
-
-        try {
-            txDispatch({type: 'BEGIN_TX'});
-
-            let ethPrice = 0;
-            if (!payWithIons) {
-                ethPrice = GLOBALS.CREATE_PARTICLE_PRICE.ETH.FT;
-            }
-            const {jsonFileUrl} = await ContractHelpers.saveMetadata({particleData, txDispatch});
-
-            // Update Transition State
-            txDispatch({
-                type: 'STREAM_TRANSITION', payload: {
-                    streamTransitions: [{to: 'CREATE', transition: 'TX_PROMPT'}]
-                }
-            });
-
-            // Create Plasma on Blockchain
-            const chargedParticles = ChargedParticles.instance();
-            const tx = {from, value: ethPrice};
-            const args = [
-                from,                       // address _creator,
-                jsonFileUrl,                // string memory _uri,
-                particleData.symbol,        // string memory _symbol,
-                particleData.isPrivate,     // bool _isPrivate,
-                particleData.supply,        // uint256 _maxSupply,
-                particleData.mintFee,       // uint256 _mintFee,
-                particleData.amountToMint,  // uint256 _initialMint,
-                payWithIons                 // bool _payWithIons
-            ];
-
-            // console.log('tx', tx);
-            // console.log('args', args);
-
-            // Submit Transaction and wait for Receipt
-            chargedParticles.sendContractTx('createPlasma', tx, args, (err, txHash) => {
-                transactionHash = txHash;
-                if (err) {
-                    handleError(err, transactionHash);
-                    return resolve({transactionHash});
-                }
-                txDispatch({type: 'SUBMIT_TX', payload: {transactionHash}});
-                resolve({tx, args, transactionHash});
-            });
-        }
-        catch (err) {
-            handleError(err, transactionHash);
-            resolve({transactionHash});
-        }
-    });
-};
-
-ContractHelpers.mintParticle = () => {
-
-};
-
-ContractHelpers.mintPlasma = () => {
-
 };
 
 export { ContractHelpers, tokenMetadata };

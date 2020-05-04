@@ -11,14 +11,10 @@ import { GLOBALS } from '../utils/globals';
 
 // Contract Data
 import {
-    ChargedParticles,
-    ChargedParticlesEscrow,
-    ChargedParticlesERC1155,
+    Bloom,
     DAI,
 } from '../blockchain/contracts';
-import ChargedParticlesData from '../blockchain/contracts/ChargedParticles';
-import ChargedParticlesEscrowData from '../blockchain/contracts/ChargedParticlesEscrow';
-import ChargedParticlesERC1155Data from '../blockchain/contracts/ChargedParticlesERC1155';
+import BloomData from '../blockchain/contracts/Bloom';
 
 // Transactions Monitor
 import Transactions from '../blockchain/transactions';
@@ -192,19 +188,11 @@ export function Updater() {
             const web3 = wallet.getWeb3();
             const cachedTxHash = cacheState.streamTxHash;
 
-            const chargedParticlesAddress = _.get(ChargedParticlesData.networks[networkId], 'address', '');
-            const chargedParticlesEscrowAddress = _.get(ChargedParticlesEscrowData.networks[networkId], 'address', '');
-            const chargedParticlesTokenAddress = _.get(ChargedParticlesERC1155Data.networks[networkId], 'address', '');
+            const bloomAddress = _.get(BloomData.networks[networkId], 'address', '');
             const daiAddress = _.get(GLOBALS.ASSET_TOKENS.DAI.ADDRESS, networkId, '');
 
-            ChargedParticles.prepare({web3, address: chargedParticlesAddress});
-            ChargedParticles.instance();
-
-            ChargedParticlesEscrow.prepare({web3, address: chargedParticlesEscrowAddress});
-            ChargedParticlesEscrow.instance();
-
-            ChargedParticlesERC1155.prepare({web3, address: chargedParticlesTokenAddress});
-            ChargedParticlesERC1155.instance();
+            Bloom.prepare({web3, address: bloomAddress});
+            Bloom.instance();
 
             DAI.prepare({web3, address: daiAddress});
             DAI.instance();

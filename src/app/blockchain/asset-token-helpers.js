@@ -7,7 +7,7 @@ import { ContractHelpers } from '../blockchain/contract-helpers';
 
 // Contract Data
 import {
-    ChargedParticles,
+    Bloom,
     DAI,
 } from './contracts';
 
@@ -34,14 +34,14 @@ AssetTokenHelpers.getBalance = ({owner, assetPairId}) => {
 
 AssetTokenHelpers.getApprovalAmount = ({owner, assetPairId}) => {
     return new Promise((resolve, reject) => {
-        const chargedParticlesAddress = ChargedParticles.instance().getAddress();
+        const bloomAddress = Bloom.instance().getAddress();
 
         const assetTokenName = _.get(_assetTokenMap, assetPairId, '');
         if (_.isEmpty(assetTokenName)) {
             return reject(`getApprovalAmount - Invalid Asset-Type-ID supplied: "${assetPairId}"`);
         }
 
-        ContractHelpers.readContractValue(assetTokenName, 'allowance', owner, chargedParticlesAddress)
+        ContractHelpers.readContractValue(assetTokenName, 'allowance', owner, bloomAddress)
             .then(resolve)
             .catch(err => {
                 reject(`getApprovalAmount - ${err}`);
@@ -51,7 +51,7 @@ AssetTokenHelpers.getApprovalAmount = ({owner, assetPairId}) => {
 
 AssetTokenHelpers.setApprovalAmount = ({owner, assetPairId, amount}) => {
     return new Promise((resolve, reject) => {
-        const chargedParticlesAddress = ChargedParticles.instance().getAddress();
+        const bloomAddress = Bloom.instance().getAddress();
 
         const assetTokenName = _.get(_assetTokenMap, assetPairId, '');
         if (_.isEmpty(assetTokenName)) {
@@ -59,7 +59,7 @@ AssetTokenHelpers.setApprovalAmount = ({owner, assetPairId, amount}) => {
         }
 
         const tx = {from: owner};
-        const args = [chargedParticlesAddress, amount];
+        const args = [bloomAddress, amount];
         DAI.instance().sendContractTx('approve', tx, args, (err, transactionHash) => {
             if (err) {
                 return reject(`setApprovalAmount - ${err}`);

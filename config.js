@@ -6,7 +6,7 @@ module.exports = {
 
     manifestName: 'Bloom',
     manifestShortName: 'Bloom', // max 12 characters
-    manifestStartUrl: 'https://bloom-finance.netlify.com/',
+    manifestStartUrl: 'https://bloom-finance.eth.link/',
     manifestBackgroundColor: '#663399',
     manifestThemeColor: '#663399',
     manifestDisplay: 'standalone',
@@ -14,7 +14,7 @@ module.exports = {
 
     // This path is subpath of your hosting https://your.domain/gatsby-eth-dapp-starter/
     // pathPrefix: `/gatsby-eth-dapp-starter/`,
-    pathPrefix: '/',
+    pathPrefix: '__GATSBY_IPFS_PATH_PREFIX__',
 
     // social
     socialLinks: [
