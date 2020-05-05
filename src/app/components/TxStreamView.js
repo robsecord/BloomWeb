@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import UseAnimations from 'react-useanimations';
 import clsx from 'clsx';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // App Components
 import { Helpers } from '../utils/helpers';
@@ -330,4 +330,4 @@ const TxStreamView = () => {
     );
 };
 
-export default TxStreamView;
+export { TxStreamView };

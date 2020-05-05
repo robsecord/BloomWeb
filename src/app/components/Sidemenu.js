@@ -1,10 +1,10 @@
 // Frameworks
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import { navigate } from '@reach/router';
 import window from 'global';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // Material UI
 import AppBar from '@material-ui/core/AppBar';
@@ -26,10 +26,11 @@ import useRootStyles from '../layout/styles/root.styles';
 // Tabs List for Accelerator
 // import acceleratorTabsList from './AcceleratorTabsList';
 const acceleratorTabsList = {
-    create: {index: 0, id: 'create',  label: 'Create', route: '/'},
+    welcome : {index: 0, id: 'welcome',  label: 'Welcome', route: '/'},
+    create  : {index: 1, id: 'create',   label: 'Create',  route: '/create'},
 };
 
-const Sidemenu = ({ closeDrawer }) => {
+const Sidemenu = ({ title, closeDrawer }) => {
     const classes = useRootStyles();
 
     const _currentTabIndex = () => {
@@ -44,7 +45,7 @@ const Sidemenu = ({ closeDrawer }) => {
     };
 
     const _selectTab = (tabKey) => () => {
-        const defaultRoute = acceleratorTabsList.market.route;
+        const defaultRoute = acceleratorTabsList.welcome.route;
         const route = _.get(_.find(acceleratorTabsList, {id: tabKey}), 'route', defaultRoute);
         if (!_.isEmpty(route)) {
             closeDrawer();
@@ -58,9 +59,9 @@ const Sidemenu = ({ closeDrawer }) => {
 
     return (
         <div>
-            <AppBar position="static" className={classNames(classes.sidemenu, classes.appBar)}>
+            <AppBar position="static">
                 <Toolbar>
-                    <AppTitleLink title="" />
+                    <AppTitleLink title={title} />
                 </Toolbar>
             </AppBar>
             <Divider/>

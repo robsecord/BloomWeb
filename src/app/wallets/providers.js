@@ -1,6 +1,6 @@
 // Frameworks
 import React from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // Internals
 import { GLOBALS } from '../utils/globals';

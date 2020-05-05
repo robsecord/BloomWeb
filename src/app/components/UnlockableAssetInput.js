@@ -1,6 +1,6 @@
 // Frameworks
 import React, { useState, useEffect } from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // App Components
 import { Helpers } from '../utils/helpers';

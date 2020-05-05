@@ -18,14 +18,14 @@ import { Sidemenu } from '../components/Sidemenu';
 import { SidePanel } from '../components/SidePanel';
 import { ConnectionWarning } from '../components/ConnectionWarning';
 import { ConnectWallet } from '../components/ConnectWallet';
-import TxStreamView from '../components/TxStreamView';
+import { TxStreamView } from '../components/TxStreamView';
 
 
 function AppLayout({ children }) {
     const classes = useRootStyles();
     const [mobileOpen, setMobileOpen] = useState(false);
 
-    const data = useStaticQuery(graphql`
+    const { site } = useStaticQuery(graphql`
         query AppLayoutQuery {
             site {
                 siteMetadata {
@@ -34,7 +34,7 @@ function AppLayout({ children }) {
             }
         }
     `);
-    const siteTitle = data.site.siteMetadata.title;
+    const siteTitle = site.siteMetadata.title;
 
     const _handleDrawerToggle = (evt) => {
         evt.preventDefault();

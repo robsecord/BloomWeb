@@ -1,7 +1,7 @@
 // Frameworks
 import ENS from 'ethereum-ens';
 import window from 'global';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // Internals
 import { GLOBALS } from '../utils/globals';
@@ -92,14 +92,6 @@ class Wallet {
         if (!this.wallet) { return; }
         return this.wallet.provider;
     }
-
-    // walletDispatch(options) {
-    //     this._walletDispatch(options);
-    // }
-
-    // cacheDispatch(options) {
-    //     this._cacheDispatch(options);
-    // }
 
     async getEnsName(address) {
         if (!this.ens) { return 'ENS Unavailable'; }

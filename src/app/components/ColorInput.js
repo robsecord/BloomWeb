@@ -48,7 +48,7 @@ const ColorInput = ({ id, initialColor, disableAlpha = true, onChange }) => {
     };
 
     return (
-        <Grid container spacing={3} className={classes.gridRow}>
+        <Grid container spacing={3}>
             <Grid item xs={7}>
                 <Button aria-describedby={elementId} variant="outlined" color="default" onClick={_handleClick}>
                     Background Color

@@ -1,6 +1,6 @@
 // Frameworks
 import React from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // App Components
 import { GLOBALS } from '../utils/globals';
@@ -62,22 +62,22 @@ ContractHelpers.readContractValue = async (contractName, method, ...args) => {
     return await contract.instance().callContractFn(method, ...args);
 };
 
-ContractHelpers.saveMetadata = ({ particleData, txDispatch }) => {
+ContractHelpers.saveMetadata = ({ tokenData, txDispatch }) => {
     return new Promise(async (resolve, reject) => {
         try {
             // Generate Token Metadata
             const jsonMetadata            = {...tokenMetadata};
-            jsonMetadata.name             = particleData.name;
-            jsonMetadata.symbol           = particleData.symbol;
-            jsonMetadata.description      = particleData.desc;
-            jsonMetadata.external_url     = `${GLOBALS.ACCELERATOR_URL}${GLOBALS.APP_ROOT}/type/{id}`;
+            jsonMetadata.name             = tokenData.name;
+            jsonMetadata.symbol           = tokenData.symbol;
+            jsonMetadata.description      = tokenData.desc;
+            jsonMetadata.external_url     = `${GLOBALS.BASE_URL}${GLOBALS.APP_ROOT}/type/{id}`;
 
             if (_.has(jsonMetadata, 'backgroundColor')) {
-                jsonMetadata.background_color = particleData.backgroundColor.replace('#', '');
+                jsonMetadata.background_color = tokenData.backgroundColor.replace('#', '');
             }
 
             // Rich Metadata from Custom Attributes
-            jsonMetadata.attributes = _.map(particleData.attributes || [], attr => {
+            jsonMetadata.attributes = _.map(tokenData.attributes || [], attr => {
                 const options = {
                     'trait_type' : attr.name,
                     'value'      : attr.value,
@@ -106,15 +106,15 @@ ContractHelpers.saveMetadata = ({ particleData, txDispatch }) => {
                     streamTransitions: [{to: 'CREATE', transition: 'IPFS_IMG'}]
                 }
             });
-            if (particleData.isSeries) {
+            if (tokenData.isSeries) {
                 // Icon
-                jsonMetadata.icon = await IPFS.saveImageFile({fileBuffer: particleData.iconBuffer});
+                jsonMetadata.icon = await IPFS.saveImageFile({fileBuffer: tokenData.iconBuffer});
 
                 // Image
-                jsonMetadata.image = await IPFS.saveImageFile({fileBuffer: particleData.imageBuffer});
+                jsonMetadata.image = await IPFS.saveImageFile({fileBuffer: tokenData.imageBuffer});
             } else {
                 // Icon as Image
-                jsonMetadata.image = await IPFS.saveImageFile({fileBuffer: particleData.iconBuffer});
+                jsonMetadata.image = await IPFS.saveImageFile({fileBuffer: tokenData.iconBuffer});
             }
 
             // Save Metadata to IPFS

@@ -1,6 +1,6 @@
 // Frameworks
 import { createDfuseClient } from '@dfuse/client';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // App Components
 import {
@@ -26,7 +26,7 @@ class Transactions {
 
     constructor() {
         this.apiKey = GLOBALS.DFUSE_API_KEY;
-        this.cacheDispatch = null;
+        this.updateCache = null;
         this.networkDispatch = null;
         this.txDispatch = null;
         this.networkId = 0;
@@ -43,8 +43,8 @@ class Transactions {
         return Transactions.__instance;
     }
 
-    init({cachedTxHash, cacheDispatch, networkDispatch, txDispatch}) {
-        this.cacheDispatch = cacheDispatch;
+    init({cachedTxHash, updateCache, networkDispatch, txDispatch}) {
+        this.updateCache = updateCache;
         this.networkDispatch = networkDispatch;
         this.txDispatch = txDispatch;
         this.cachedTxHash = cachedTxHash;
@@ -119,8 +119,8 @@ class Transactions {
     }
 
     async streamTransaction({transactionHash}) {
-        if (!this.txDispatch || !this.cacheDispatch) { return; }
-        this.cacheDispatch({type: 'UPDATE_KEY', payload: {key: 'streamTxHash', value: transactionHash}});
+        if (!this.txDispatch || !this.updateCache) { return; }
+        this.updateCache('streamTxHash', transactionHash);
         this.txDispatch({type: 'BEGIN_STREAMING', payload: {transactionHash}});
 
         let currentTransitions = [];
@@ -161,7 +161,7 @@ class Transactions {
 
             if (message.type === 'complete' || forceEnd) {
                 this.cachedTxHash = null;
-                this.cacheDispatch({type: 'UPDATE_KEY', payload: {key: 'streamTxHash', value: ''}});
+                this.updateCache('streamTxHash', '');
                 this.txDispatch({type: 'STREAM_COMPLETE'});
                 this.stream.close();
             }

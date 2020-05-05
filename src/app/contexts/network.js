@@ -1,6 +1,6 @@
 // Frameworks
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // App Components
 import { useWalletContext } from './wallet';

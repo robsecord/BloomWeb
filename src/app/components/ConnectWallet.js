@@ -1,9 +1,9 @@
 // Frameworks
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import clsx from 'clsx';
 import SwipeableViews from 'react-swipeable-views';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // Material UI
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -134,7 +134,7 @@ function LogoWrapper({ walletKey, onConnecting, onConnected }) {
             onClick={_walletConnect}
         >
             <Box className={customClasses.logoBox}>
-                <div className={classNames(customClasses.logoSvg, logoClass)}>{logo}</div>
+                <div className={clsx(customClasses.logoSvg, logoClass)}>{logo}</div>
                 <p className={customClasses.logoTitle}>{name}</p>
             </Box>
         </Button>

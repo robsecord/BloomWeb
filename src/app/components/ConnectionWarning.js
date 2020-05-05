@@ -1,7 +1,7 @@
 // Frameworks
 import React from 'react';
 import UseAnimations from 'react-useanimations';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,8 +28,10 @@ function ConnectionWarning() {
     const customClasses = useCustomStyles();
     const [ networkState ] = useNetworkContext();
     const { connectionState } = networkState;
+    const connectedType = _.get(connectionState, 'type', '');
+    const connectionMessage = _.get(connectionState, 'message', '');
 
-    if (_.isEmpty(connectionState) || connectionState.type !== 'WEB3_WRONG_NETWORK') {
+    if (_.isEmpty(connectionState) || connectedType !== 'WEB3_WRONG_NETWORK') {
         return '';
     }
 
@@ -40,7 +42,7 @@ function ConnectionWarning() {
             className={customClasses.alertBox}
             icon={<UseAnimations animationKey="alertCircle" size={24} />}
         >
-            {connectionState.message}
+            {connectionMessage}
         </Alert>
     );
 }

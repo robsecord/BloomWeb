@@ -61,7 +61,7 @@ export function Updater() {
     const cachedWallet = cacheState.cachedWallet;
     const updateCache = cacheDispatch.updateKey;
 
-    const data = useStaticQuery(graphql`
+    const { site } = useStaticQuery(graphql`
         query SiteDataWalletQuery {
             site {
                 siteMetadata {
@@ -71,8 +71,8 @@ export function Updater() {
             }
         }
     `);
-    const siteTitle = data.site.siteMetadata.title;
-    const siteLogoUrl = data.site.siteMetadata.logoUrl;
+    const siteTitle = site.siteMetadata.title;
+    const siteLogoUrl = site.siteMetadata.logoUrl;
 
 
     // Prepare Wallet Interface

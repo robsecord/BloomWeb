@@ -1,6 +1,6 @@
 // Frameworks
 import React from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';

@@ -1,6 +1,6 @@
 // Frameworks
 import React, { createContext, useContext, useReducer, useEffect, useMemo } from 'react';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // App Components
 import Wallet from '../wallets';
@@ -172,6 +172,8 @@ export function Updater() {
     const wallet = useMemo(() => Wallet.instance(), [Wallet]);
 
     const [ cacheState, cacheDispatch ] = useLocalStorageContext();
+    const cachedTxHash = cacheState.streamTxHash;
+    const updateCache = cacheDispatch.updateKey;
 
     const [ txState, txDispatch ] = useTransactionContext();
     const { submittedTransaction } = txState;
@@ -186,7 +188,6 @@ export function Updater() {
     useEffect(() => {
         if (isWalletReady) {
             const web3 = wallet.getWeb3();
-            const cachedTxHash = cacheState.streamTxHash;
 
             const bloomAddress = _.get(BloomData.networks[networkId], 'address', '');
             const daiAddress = _.get(GLOBALS.ASSET_TOKENS.DAI.ADDRESS, networkId, '');
@@ -198,7 +199,7 @@ export function Updater() {
             DAI.instance();
 
             const transactions = Transactions.instance();
-            transactions.init({cachedTxHash, cacheDispatch, networkDispatch, txDispatch});
+            transactions.init({cachedTxHash, updateCache, networkDispatch, txDispatch});
             transactions.connectToNetwork({networkId});
             transactions.resumeIncompleteStreams();
         }

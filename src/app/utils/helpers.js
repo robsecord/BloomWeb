@@ -1,6 +1,6 @@
 // Frameworks
 import Web3 from 'web3';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 // App Components
 import Wallet from '../wallets';
