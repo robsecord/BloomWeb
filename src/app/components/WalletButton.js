@@ -22,7 +22,7 @@ import { useWalletContext } from '../contexts/wallet';
 
 // Custom Styles
 const useCustomStyles = makeStyles(theme => {
-    console.log('theme', theme);
+    // console.log('theme', theme);
     return {
         walletButton: {
             marginLeft: 'auto',

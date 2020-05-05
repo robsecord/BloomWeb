@@ -74,6 +74,7 @@ module.exports = {
                 }
             }
         },
+        // 'gatsby-plugin-netlify',
         'gatsby-plugin-ipfs',
 
         // this (optional) plugin enables Progressive Web App + Offline functionality
