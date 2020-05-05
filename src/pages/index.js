@@ -1,5 +1,5 @@
 // Frameworks
-import React from 'react';
+import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 
 // Material UI
@@ -10,6 +10,14 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 const useCustomStyles = makeStyles(() => ({
+    '@keyframes spin3D': {
+        from: {
+            transform: 'rotate3d(.5,.5,.5, 360deg)',
+        },
+        to: {
+            transform: 'rotate3d(0deg)',
+        }
+    },
     spinner: {
         width: 300,
         height: 300,
@@ -28,7 +36,7 @@ const useCustomStyles = makeStyles(() => ({
         alignItems: 'center',
         borderRadius: '50%',
         background: 'linear-gradient(0deg, rgba(22, 214, 8,0.1) 33%, rgba(22, 214, 8,1) 100%)',
-        animation: 'spin3D 1.8s linear 0s infinite',
+        animation: '$spin3D 1.8s linear 0s infinite',
     },
     border2: {
         position: 'absolute',
@@ -40,7 +48,7 @@ const useCustomStyles = makeStyles(() => ({
         alignItems: 'center',
         borderRadius: '50%',
         background: 'linear-gradient(0deg, rgba(237, 237, 28,0.1) 33%, rgba(237, 237, 28,1) 100%)',
-        animation: 'spin3D 2.2s linear 0s infinite',
+        animation: '$spin3D 2.2s linear 0s infinite',
     },
     core1: {
         width: '100%',
@@ -59,7 +67,9 @@ const useCustomStyles = makeStyles(() => ({
 const IndexPage = () => {
     const customClasses = useCustomStyles();
 
-    navigate('/app');
+    useEffect(() => {
+        navigate('/app');
+    }, []);
 
     return (
         <Layout>
