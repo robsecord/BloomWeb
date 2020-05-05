@@ -3,7 +3,7 @@ import React from 'react';
 import { navigate } from '@reach/router';
 
 // App Components
-import Logo from '../../images/logo/Bloom_Transparent.svg';
+import Logo from '../../images/svg/Bloom_Transparent.svg';
 
 // Common
 import { GLOBALS } from '../utils/globals';
