@@ -8,6 +8,10 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
 ![GitHub last commit](https://img.shields.io/github/last-commit/robsecord/BloomWeb)
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/robsecord/BloomWeb)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/robsecord/BloomWeb)
+![GitHub issues](https://img.shields.io/github/issues-raw/robsecord/BloomWeb)
+
 #### **Website:**
 https://bloom-finance.eth.link/
 
