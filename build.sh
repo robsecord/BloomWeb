@@ -12,6 +12,7 @@ echo "-------------------"
 echo "Building Dependencies.."
 echo "-------------------"
 cd ./node_modules/gatsby-plugin-ipfs/
+rm -f ./gatsby-node.js
 (yarn && yarn build) || exit_with_msg "Build deps failed!" $?
 cd ../../
 
