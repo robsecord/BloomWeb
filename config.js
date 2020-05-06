@@ -2,15 +2,15 @@ module.exports = {
     siteTitle: 'Bloom',
     siteDesc: 'Coupons that Earn Interest!',
     siteAuthor: 'Interesting Ventures',
-    siteLogoUrl: 'src/images/gatsby-icon.png',
+    siteLogoUrl: 'src/images/favicon/android-chrome-192x192.png',
 
     manifestName: 'Bloom',
     manifestShortName: 'Bloom', // max 12 characters
-    manifestStartUrl: 'https://jolly-sunset-4841.on.fleek.co',
+    manifestStartUrl: 'https://bloom-finance.eth.link',
     manifestBackgroundColor: '#663399',
     manifestThemeColor: '#663399',
     manifestDisplay: 'standalone',
-    manifestIcon: 'src/images/gatsby-icon.png',
+    manifestIcon: 'src/images/favicon/android-chrome-512x512.png',
 
     // This path is subpath of your hosting https://your.domain/gatsby-eth-dapp-starter/
     // pathPrefix: `/gatsby-eth-dapp-starter/`,

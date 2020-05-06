@@ -5,7 +5,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-import plantImg from '../../images/house-plant2.png';
+import plantImg from '../../images/house-plant.png';
 
 // Custom Styles
 const useCustomStyles = makeStyles(theme => ({
