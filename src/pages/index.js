@@ -1,6 +1,8 @@
 // Frameworks
-import React, { useEffect } from 'react';
-import { navigate } from 'gatsby';
+// import React, { useEffect } from 'react';
+// import { navigate } from 'gatsby';
+import React from 'react';
+import { Redirect } from '@reach/router';
 
 // Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -67,9 +69,9 @@ const useCustomStyles = makeStyles(() => ({
 const IndexPage = () => {
     const customClasses = useCustomStyles();
 
-    useEffect(() => {
-        navigate('/app');
-    }, []);
+    // useEffect(() => {
+    //     navigate('/app');
+    // }, []);
 
     return (
         <Layout>
@@ -83,6 +85,8 @@ const IndexPage = () => {
                     <div className={customClasses.core2}></div>
                 </div> 
             </div>
+            
+            <Redirect to="/app" noThrow />
         </Layout>
     );
 };

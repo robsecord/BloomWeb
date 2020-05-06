@@ -21,6 +21,7 @@ echo "-------------------"
 echo "Building Project.."
 echo "-------------------"
 gatsby clean
+gatsby telemetry --disable
 gatsby build --prefix-paths || exit_with_msg "Build failed!" $?
 
 echo " "
