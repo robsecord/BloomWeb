@@ -1,7 +1,7 @@
 {
   "name": "bloom-web",
   "description": "Ethereum Dapp for the Bloom-Finance Application",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": "Interesting Ventures",
   "keywords": [
     "Coupon",
@@ -78,7 +78,7 @@
     "start": "npm run develop",
     "develop": "gatsby develop",
     "build": "./build.sh",
-    "deploy-stg": "./deploy.sh \"Deploy for stage\""
+    "deploy": "./deploy.sh \"Deploy for IPFS via Fleek\""
   },
   "repository": {
     "type": "git",
