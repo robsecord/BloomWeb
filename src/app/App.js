@@ -61,7 +61,7 @@ function App() {
                 <AppUpdaters />
                 <AppLayout>
                     <Router>
-                        <Welcome path={`${GLOBALS.APP_ROOT}`} />
+                        <Welcome path={`${GLOBALS.APP_ROOT}`} default />
                         <Create path={`${GLOBALS.APP_ROOT}/create`} />
                     </Router>
                 </AppLayout>
