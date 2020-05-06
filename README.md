@@ -2,16 +2,11 @@
 ### Coupons that Earn Interest!
 
 ![GitHub package.json dynamic](https://img.shields.io/github/package-json/version/robsecord/BloomWeb)
-
 ![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/robsecord/BloomWeb)
-
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/robsecord/BloomWeb)
 ![GitHub repo size](https://img.shields.io/github/repo-size/robsecord/BloomWeb)
-
 ![Maintenance](https://img.shields.io/maintenance/yes/2020)
 ![GitHub last commit](https://img.shields.io/github/last-commit/robsecord/BloomWeb)
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/cc2fea21-5b34-4285-b7b6-6e626f0d5eff/deploy-status)](https://app.netlify.com/sites/bloom-finance/deploys)
 
 #### **Website:**
 https://bloom-finance.eth.link/

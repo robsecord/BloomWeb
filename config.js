@@ -10,7 +10,7 @@ module.exports = {
     manifestBackgroundColor: '#663399',
     manifestThemeColor: '#663399',
     manifestDisplay: 'standalone',
-    manifestIcon: 'src/images/favicon/android-chrome-512x512.png',
+    manifestIcon: 'src/images/favicon/android-chrome-256x256.png',
 
     // This path is subpath of your hosting https://your.domain/gatsby-eth-dapp-starter/
     // pathPrefix: `/gatsby-eth-dapp-starter/`,
