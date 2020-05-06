@@ -6,7 +6,7 @@ module.exports = {
 
     manifestName: 'Bloom',
     manifestShortName: 'Bloom', // max 12 characters
-    manifestStartUrl: 'https://bloom-finance.eth',
+    manifestStartUrl: 'https://jolly-sunset-4841.on.fleek.co',
     manifestBackgroundColor: '#663399',
     manifestThemeColor: '#663399',
     manifestDisplay: 'standalone',
