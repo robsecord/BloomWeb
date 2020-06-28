@@ -2,7 +2,7 @@ export const GLOBALS = {};
 
 GLOBALS.CODENAME            = 'Bloom';
 GLOBALS.CODENAME_ABBR       = 'BLM';
-GLOBALS.CODE_VERSION        = 'v0.0.24';
+GLOBALS.CODE_VERSION        = 'v0.0.25';
 GLOBALS.BASE_URL            = 'https://bloom-finance.eth.link';
 GLOBALS.APP_ROOT            = '/app';
 

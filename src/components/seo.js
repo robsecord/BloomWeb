@@ -11,6 +11,7 @@ function SEO({description, lang, meta, title}) {
                     title
                     description
                     author
+                    logoUrl
                 }
             }
         }
@@ -41,6 +42,10 @@ function SEO({description, lang, meta, title}) {
                 {
                     property: `og:type`,
                     content: `website`,
+                },
+                {
+                    property: `og:image`,
+                    content: site.siteMetadata.logoUrl,
                 },
                 {
                     name: `twitter:card`,
