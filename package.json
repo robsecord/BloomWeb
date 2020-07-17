@@ -27,7 +27,7 @@
     "@reach/visually-hidden": "^0.8.6",
     "@walletconnect/browser": "^1.0.0-beta.47",
     "@walletconnect/qrcode-modal": "^1.0.0-beta.47",
-    "@walletconnect/web3-provider": "^1.0.0-beta.47",
+    "@walletconnect/web3-provider": "^1.0.0",
     "authereum": "^0.0.4-beta.141",
     "babel-plugin-styled-components": "^1.10.7",
     "buffer": "^5.6.0",
