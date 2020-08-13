@@ -59,7 +59,7 @@
     "react-color": "^2.18.1",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^3.4.3",
     "react-swipeable-views": "^0.13.9",
     "react-toastify": "^5.5.0",
     "react-useanimations": "^1.2.13",
