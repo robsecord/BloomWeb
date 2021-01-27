@@ -27,7 +27,7 @@
     "@reach/visually-hidden": "^0.8.6",
     "@walletconnect/browser": "^1.0.0-beta.47",
     "@walletconnect/qrcode-modal": "^1.0.0-beta.47",
-    "@walletconnect/web3-provider": "^1.0.0-beta.47",
+    "@walletconnect/web3-provider": "^1.0.0",
     "authereum": "^0.0.4-beta.141",
     "babel-plugin-styled-components": "^1.10.7",
     "buffer": "^5.6.0",
@@ -65,7 +65,7 @@
     "react-useanimations": "^1.2.13",
     "rimble-ui": "^0.14.0",
     "styled-components": "^4.4.1",
-    "web3": "^1.2.7"
+    "web3": "^1.2.8"
   },
   "devDependencies": {},
   "optionalDependencies": {
